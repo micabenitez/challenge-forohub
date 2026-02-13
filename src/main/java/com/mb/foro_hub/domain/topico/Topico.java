@@ -27,7 +27,7 @@ public class Topico {
 
     @Column(name = "status")
     @Enumerated(value = EnumType.STRING)
-    private EstadoTopico estadoTopico;
+    private EstadoTopico status = EstadoTopico.SIN_RESPUESTA;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
