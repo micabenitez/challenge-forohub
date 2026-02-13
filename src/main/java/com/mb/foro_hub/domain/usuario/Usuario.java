@@ -2,16 +2,13 @@ package com.mb.foro_hub.domain.usuario;
 
 import com.mb.foro_hub.domain.perfil.Perfil;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@Getter @Setter
 @EqualsAndHashCode(of = "id")
 @Table(name = "usuarios")
 @Entity(name = "Usuario")
