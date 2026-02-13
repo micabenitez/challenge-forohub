@@ -1,17 +1,14 @@
 package com.mb.foro_hub.domain.curso;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@Getter @Setter
 @EqualsAndHashCode(of = "id")
 @Table(name = "cursos")
-@Entity
+@Entity(name = "Curso")
 public class Curso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
