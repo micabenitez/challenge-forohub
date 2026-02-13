@@ -4,6 +4,7 @@ import com.mb.foro_hub.domain.curso.Curso;
 import com.mb.foro_hub.domain.respuesta.Respuesta;
 import com.mb.foro_hub.domain.usuario.Usuario;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -39,4 +40,11 @@ public class Topico {
 
     @OneToMany(mappedBy = "topico")
     private List<Respuesta> respuestas;
+
+    public Topico(String titulo, String mensaje, Curso curso, Usuario usuario) {
+        this.titulo = titulo;
+        this.mensaje = mensaje;
+        this.curso = curso;
+        this.usuario = usuario;
+    }
 }
