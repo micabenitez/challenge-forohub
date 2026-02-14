@@ -2,8 +2,11 @@ package com.mb.foro_hub.domain.topico;
 
 import com.mb.foro_hub.domain.curso.Curso;
 import com.mb.foro_hub.domain.respuesta.Respuesta;
+import com.mb.foro_hub.domain.topico.dto.DatosActualizacionTopico;
 import com.mb.foro_hub.domain.usuario.Usuario;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -39,4 +42,26 @@ public class Topico {
 
     @OneToMany(mappedBy = "topico")
     private List<Respuesta> respuestas;
+
+    private Boolean activo = true;
+
+    public Topico(String titulo, String mensaje, Curso curso, Usuario usuario) {
+        this.titulo = titulo;
+        this.mensaje = mensaje;
+        this.curso = curso;
+        this.usuario = usuario;
+    }
+
+    public void actualizarInfo(@Valid DatosActualizacionTopico datos) {
+        if(titulo != null) {
+            this.titulo = datos.titulo();
+        }
+        if(mensaje != null) {
+            this.mensaje = datos.mensaje();
+        }
+    }
+
+    public void desactivar() {
+        this.activo = false;
+    }
 }
