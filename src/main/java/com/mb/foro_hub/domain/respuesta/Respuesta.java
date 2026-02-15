@@ -1,5 +1,7 @@
 package com.mb.foro_hub.domain.respuesta;
 
+import com.mb.foro_hub.domain.respuesta.dto.DatosActualizarRespuesta;
+import com.mb.foro_hub.domain.respuesta.dto.DatosRegistroRespuesta;
 import com.mb.foro_hub.domain.topico.Topico;
 import com.mb.foro_hub.domain.usuario.Usuario;
 import jakarta.persistence.*;
@@ -25,10 +27,35 @@ public class Respuesta {
     private Topico topico;
 
     @Column(name = "fecha_creacion")
-    private LocalDateTime fechaCreacion;
+    private LocalDateTime fechaCreacion = LocalDateTime.now();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
-    private Boolean solucionado = false;
+    private Boolean solucion = false;
+    private Boolean activo = true;
+
+    public Respuesta(DatosRegistroRespuesta datos, Usuario usuario, Topico topico) {
+        this.mensaje = datos.mensaje();
+        this.topico = topico;
+        this.usuario = usuario;
+    }
+
+    public void actualizarDatos(DatosActualizarRespuesta datos) {
+        if (datos.mensaje() != null) {
+            this.mensaje = datos.mensaje();
+        }
+    }
+
+    public void desactivar() {
+        this.activo = false;
+    }
+
+    public void marcarComoSolucion() {
+        this.solucion = true;
+    }
+
+    public void desmarcarComoSolucion() {
+        this.solucion = false;
+    }
 }

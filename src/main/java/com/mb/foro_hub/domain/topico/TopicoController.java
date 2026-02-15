@@ -57,6 +57,6 @@ public class TopicoController {
     @Transactional
     public ResponseEntity desactivar(@PathVariable Long id) {
         service.desactivar(id);
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.noContent().build();
     }
 }

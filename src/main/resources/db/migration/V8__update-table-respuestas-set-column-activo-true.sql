@@ -1,0 +1,1 @@
+update respuestas set activo = true;

@@ -64,4 +64,8 @@ public class Topico {
     public void desactivar() {
         this.activo = false;
     }
+
+    public void marcarComoSolucionado() {
+        this.status = EstadoTopico.SOLUCIONADO;
+    }
 }
