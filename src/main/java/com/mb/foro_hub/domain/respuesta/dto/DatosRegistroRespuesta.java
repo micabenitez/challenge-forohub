@@ -5,6 +5,6 @@ import jakarta.validation.constraints.NotNull;
 
 public record DatosRegistroRespuesta(
         @NotNull Long idUsuario,
-        @NotBlank String mensaje
+        @NotBlank(message = "El mensaje es obligatorio") String mensaje
 ){
 }

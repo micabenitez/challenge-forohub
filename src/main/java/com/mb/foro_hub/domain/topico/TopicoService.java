@@ -37,8 +37,8 @@ public class TopicoService {
         return topicoRepository.findAllByActivoTrue(paginacion).map(DatosListaTopico::new);
     }
 
-    public DatosDetalleTopico actualizar(@Valid DatosActualizacionTopico datos) {
-        var topico = topicoRepository.findById(datos.id())
+    public DatosDetalleTopico actualizar(Long id, @Valid DatosActualizacionTopico datos) {
+        var topico = topicoRepository.findById(id)
                 .orElseThrow(() -> new ValidacionException("No existe un topico con ese ID"));
 
         topico.actualizarInfo(datos);

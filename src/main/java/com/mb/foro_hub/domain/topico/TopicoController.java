@@ -30,7 +30,7 @@ public class TopicoController {
         DatosDetalleTopico topicoCreado = service.registrarTopico(datos);
 
         URI uri = uriComponentsBuilder
-                .path("/topicos/{id}")
+                .path("/api/v1/topicos/{id}")
                 .buildAndExpand(topicoCreado.id())
                 .toUri();
         return ResponseEntity.created(uri).body(topicoCreado);
@@ -47,10 +47,10 @@ public class TopicoController {
         return ResponseEntity.ok(service.obtenerTopicoPorId(id));
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<DatosDetalleTopico> actualizar(@RequestBody @Valid DatosActualizacionTopico datos) {
-        return ResponseEntity.ok(service.actualizar(datos));
+    public ResponseEntity<DatosDetalleTopico> actualizar(@PathVariable Long id, @RequestBody @Valid DatosActualizacionTopico datos) {
+        return ResponseEntity.ok(service.actualizar(id, datos));
     }
 
     @DeleteMapping("/{id}")
