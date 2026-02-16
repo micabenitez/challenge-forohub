@@ -53,10 +53,10 @@ public class Topico {
     }
 
     public void actualizarInfo(@Valid DatosActualizacionTopico datos) {
-        if(titulo != null) {
+        if(datos.titulo() != null) {
             this.titulo = datos.titulo();
         }
-        if(mensaje != null) {
+        if(datos.mensaje() != null) {
             this.mensaje = datos.mensaje();
         }
     }

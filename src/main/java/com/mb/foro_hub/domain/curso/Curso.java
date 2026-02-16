@@ -25,8 +25,8 @@ public class Curso {
     }
 
     public void actualizar(DatosActualizacionCurso datos) {
-        if(nombre != null) this.nombre = datos.nombre();
-        if(categoria != null) this.categoria = datos.categoria();
+        if(datos.nombre() != null) this.nombre = datos.nombre();
+        if(datos.categoria() != null) this.categoria = datos.categoria();
     }
 
     public void desactivar() {

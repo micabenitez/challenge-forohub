@@ -17,4 +17,8 @@ public class Perfil {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
+
+    public Perfil(String nombre) {
+        this.nombre = nombre;
+    }
 }
