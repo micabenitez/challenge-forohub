@@ -43,7 +43,6 @@ public class RespuestaController {
         return ResponseEntity.ok(service.listarRespuestas(topicoId, paginacion));
     }
 
-
     @GetMapping("/respuestas/{id}")
     public ResponseEntity<DatosDetalleRespuesta> obtenerRespuestaPorId(@PathVariable Long id) {
         return ResponseEntity.ok(service.obtenerRespuestaPorId(id));

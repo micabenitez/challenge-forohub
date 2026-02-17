@@ -58,4 +58,10 @@ public class UsuarioController {
         return ResponseEntity.noContent().build();
     }
 
+    @PatchMapping("/{id}/perfil")
+    public ResponseEntity<Void> asignarPerfil(@PathVariable Long id, @RequestParam String perfil) {
+        service.asignarPerfil(id, perfil);
+        return ResponseEntity.noContent().build();
+    }
+
 }

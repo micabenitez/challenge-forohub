@@ -5,9 +5,15 @@ import com.mb.foro_hub.domain.usuario.dto.DatosActualizacionUsuario;
 import com.mb.foro_hub.domain.usuario.dto.DatosRegistroUsuario;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,7 +21,7 @@ import java.util.Set;
 @EqualsAndHashCode(of = "id")
 @Table(name = "usuarios")
 @Entity(name = "Usuario")
-public class Usuario {
+public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -45,5 +51,42 @@ public class Usuario {
 
     public void desactivar() {
         this.activo = false;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return perfiles.stream()
+                .map(perfil -> new SimpleGrantedAuthority(perfil.getNombre()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public String getPassword() {
+        return contrasena;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

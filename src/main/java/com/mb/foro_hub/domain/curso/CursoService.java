@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 public class CursoService {
     private final CursoRepository cursoRepository;
 
+    @PreAuthorize("hasRole('ADMIN')")
     public DatosDetalleCurso registrarCurso(@Valid DatosRegistroCurso datos) {
         if(cursoRepository.existsByNombre(datos.nombre())) throw new ValidacionException("Ya existe un curso con el nombre: " + datos.nombre());
 
@@ -23,11 +25,13 @@ public class CursoService {
         return new DatosDetalleCurso(curso);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     public void desactivar(Long id) {
         var curso = getCurso(id);
         curso.desactivar();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     public DatosDetalleCurso actualizar(Long id, @Valid DatosActualizacionCurso datos) {
         var curso = getCurso(id);
         curso.actualizar(datos);

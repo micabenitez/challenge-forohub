@@ -11,6 +11,7 @@ import com.mb.foro_hub.exceptions.ValidacionException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,6 +21,7 @@ public class RespuestaService {
     private final TopicoRepository topicoRepository;
     private final UsuarioRepository usuarioRepository;
 
+    @PreAuthorize("isAuthenticated()")
     public DatosDetalleRespuesta crearRespuesta(Long idTopico, DatosRegistroRespuesta datos) {
         var topico = topicoRepository.findById(idTopico)
                 .orElseThrow(() -> new ValidacionException("No existe un topico con ese ID"));
@@ -50,6 +52,7 @@ public class RespuestaService {
         return new DatosDetalleRespuesta(respuesta);
     }
 
+    @PreAuthorize("@respuestaService.esAutor(#id, authentication.name) or hasRole('ADMIN')")
     public DatosDetalleRespuesta actualizarRespuesta(Long id, DatosActualizarRespuesta datos) {
         var respuesta = getRespuesta(id);
         respuesta.actualizarDatos(datos);
@@ -57,6 +60,7 @@ public class RespuestaService {
         return new DatosDetalleRespuesta(respuesta);
     }
 
+    @PreAuthorize("@respuestaService.esAutor(#id, authentication.name) or hasRole('ADMIN')")
     public void desactivarRespuesta(Long id) {
         var respuesta = getRespuesta(id);
         respuesta.desactivar();
@@ -68,6 +72,7 @@ public class RespuestaService {
         return respuesta;
     }
 
+    @PreAuthorize("@respuestaService.esAutor(#id, authentication.name) or hasRole('ADMIN') or hasRole('PROFESOR')")
     public DatosDetalleRespuesta marcarComoSolucion(Long id) {
         var respuesta = getRespuesta(id);
         var topico = respuesta.getTopico();
@@ -84,5 +89,9 @@ public class RespuestaService {
         topico.marcarComoSolucionado();
 
         return new DatosDetalleRespuesta(respuesta);
+    }
+
+    public boolean esAutor(Long id, String email) {
+        return respuestaRepository.esAutor(id, email);
     }
 }
