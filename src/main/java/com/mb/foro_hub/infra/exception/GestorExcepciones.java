@@ -1,5 +1,6 @@
 package com.mb.foro_hub.infra.exception;
 
+import com.mb.foro_hub.exceptions.ValidacionException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,11 @@ public class GestorExcepciones {
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity getionarError404() {
         return ResponseEntity.notFound().build();
+    }
+
+    @ExceptionHandler(ValidacionException.class)
+    public ResponseEntity gestionaarErrorDeValidacion(ValidacionException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

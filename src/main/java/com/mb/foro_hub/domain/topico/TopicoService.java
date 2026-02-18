@@ -25,6 +25,10 @@ public class TopicoService {
 
     @PreAuthorize("isAuthenticated()")
     public DatosDetalleTopico registrarTopico(@Valid DatosRegistroTopico datos) {
+        if (topicoRepository.existsByTituloAndMensaje(datos.titulo(), datos.mensaje())) {
+            throw new ValidacionException("Ya existe un tópico con el mismo título y mensaje");
+        }
+
         var curso = cursoRepository.findById(datos.idCurso())
                 .orElseThrow(() -> new ValidacionException("No existe un curso con ese ID"));
 
