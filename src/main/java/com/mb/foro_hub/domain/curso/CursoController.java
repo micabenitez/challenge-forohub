@@ -3,6 +3,7 @@ package com.mb.foro_hub.domain.curso;
 import com.mb.foro_hub.domain.curso.dto.DatosActualizacionCurso;
 import com.mb.foro_hub.domain.curso.dto.DatosDetalleCurso;
 import com.mb.foro_hub.domain.curso.dto.DatosRegistroCurso;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,7 @@ import java.net.URI;
 @RestController
 @RequestMapping("/api/v1/cursos")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearer-key")
 public class CursoController {
     private final CursoService service;
 

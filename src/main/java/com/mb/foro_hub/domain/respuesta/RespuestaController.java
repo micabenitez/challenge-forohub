@@ -4,6 +4,7 @@ import com.mb.foro_hub.domain.respuesta.dto.DatosActualizarRespuesta;
 import com.mb.foro_hub.domain.respuesta.dto.DatosListaRespuesta;
 import com.mb.foro_hub.domain.respuesta.dto.DatosDetalleRespuesta;
 import com.mb.foro_hub.domain.respuesta.dto.DatosRegistroRespuesta;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,7 @@ import java.net.URI;
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearer-key")
 public class RespuestaController {
     private final RespuestaService service;
 

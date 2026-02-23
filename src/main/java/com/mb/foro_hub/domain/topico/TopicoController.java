@@ -4,6 +4,7 @@ import com.mb.foro_hub.domain.topico.dto.DatosActualizacionTopico;
 import com.mb.foro_hub.domain.topico.dto.DatosDetalleTopico;
 import com.mb.foro_hub.domain.topico.dto.DatosListaTopico;
 import com.mb.foro_hub.domain.topico.dto.DatosRegistroTopico;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,7 @@ import java.net.URI;
 @RestController
 @RequestMapping("/api/v1/topicos")
 @RequiredArgsConstructor
+@SecurityRequirement(name = "bearer-key")
 public class TopicoController {
 
     private final TopicoService service;

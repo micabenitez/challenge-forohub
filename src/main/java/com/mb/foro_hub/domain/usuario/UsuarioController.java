@@ -3,6 +3,7 @@ package com.mb.foro_hub.domain.usuario;
 import com.mb.foro_hub.domain.usuario.dto.DatosActualizacionUsuario;
 import com.mb.foro_hub.domain.usuario.dto.DatosDetalleUsuario;
 import com.mb.foro_hub.domain.usuario.dto.DatosRegistroUsuario;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -35,17 +36,20 @@ public class UsuarioController {
     }
 
     @GetMapping
+    @SecurityRequirement(name = "bearer-key")
     public ResponseEntity<Page<DatosDetalleUsuario>> listarUsuarios(@PageableDefault(size = 10) Pageable paginacion) {
         return ResponseEntity.ok(service.listarUsuarios(paginacion));
     }
 
     @GetMapping("/{id}")
+    @SecurityRequirement(name = "bearer-key")
     public ResponseEntity<DatosDetalleUsuario> obtenerUsuarioPorId(@PathVariable Long id) {
         return ResponseEntity.ok(service.obtenerUsuarioPorId(id));
     }
 
     @PutMapping("/{id}")
     @Transactional
+    @SecurityRequirement(name = "bearer-key")
     public ResponseEntity<DatosDetalleUsuario> actualizar(@PathVariable Long id, @RequestBody @Valid DatosActualizacionUsuario datos) {
         var usuario = service.actualizar(id, datos);
         return ResponseEntity.ok(usuario);
@@ -53,12 +57,14 @@ public class UsuarioController {
 
     @DeleteMapping("/{id}")
     @Transactional
+    @SecurityRequirement(name = "bearer-key")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         service.eliminar(id);
         return ResponseEntity.noContent().build();
     }
 
     @PatchMapping("/{id}/perfil")
+    @SecurityRequirement(name = "bearer-key")
     public ResponseEntity<Void> asignarPerfil(@PathVariable Long id, @RequestParam String perfil) {
         service.asignarPerfil(id, perfil);
         return ResponseEntity.noContent().build();
