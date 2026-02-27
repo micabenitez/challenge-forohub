@@ -7,7 +7,7 @@
 
 ---
 
-## 📖 Descripción
+## Descripción
 
 **Foro Hub** es una API RESTful que gestiona la comunicación en un entorno académico.  
 Permite a los usuarios crear tópicos, publicar respuestas y moderar discusiones según su rol.
@@ -16,21 +16,21 @@ El sistema centraliza el conocimiento de forma estructurada, segura y escalable,
 
 ---
 
-## 💡 Competencias Técnicas Aplicadas
+## Competencias Técnicas Aplicadas
 
 Este proyecto fue construido con un enfoque profesional para demostrar:
 
-### 🔐 Control de Acceso Basado en Roles
+### Control de Acceso Basado en Roles
 - **ALUMNO:** crea y edita sus propios tópicos, publica respuestas.
 - **PROFESOR:** modera discusiones y marca respuestas como “Solución”.
 - **ADMIN:** gestiona usuarios y controla completamente la plataforma.
 
-### 🧠 Lógica de Negocio
+### Lógica de Negocio
 - Prevención de tópicos duplicados (título + mensaje).
 - Validaciones a nivel de servicio.
 - Eliminación lógica para preservar historial.
 
-### 🧪 Calidad y Testing
+### Calidad y Testing
 - Tests de integración con **JUnit 5 + MockMvc**.
 - Validación de casos exitosos (200/201).
 - Manejo de errores (400).
@@ -39,7 +39,7 @@ Este proyecto fue construido con un enfoque profesional para demostrar:
 
 ---
 
-## 🛠️ Stack Tecnológico
+## Stack Tecnológico
 
 | Categoría        | Tecnología | Propósito |
 |------------------|------------|-----------|
@@ -57,7 +57,7 @@ Este proyecto fue construido con un enfoque profesional para demostrar:
 
 ---
 
-## 📊 Diagrama Entidad-Relación (DER)
+## Diagrama Entidad-Relación (DER)
 
 El modelo de datos asegura la integridad relacional entre los usuarios, los cursos a los que pertenecen y sus interacciones en el foro (tópicos y respuestas).
 
@@ -81,7 +81,7 @@ Curso   (1) ────< (N) Topico
 
 ---
 
-## 🔐 Seguridad
+## Seguridad
 
 El sistema utiliza **Autenticación Stateless**. Las rutas de la API están protegidas mediante los filtros de Spring Security. 
 
@@ -89,19 +89,19 @@ Al enviar credenciales válidas al endpoint `/login`, el servidor devuelve un **
 
 ---
 
-## 🧠 Decisiones Técnicas
+## Decisiones Técnicas
 
-### 📦 Arquitectura "Package by Feature"
+### Arquitectura "Package by Feature"
 El código está organizado por dominio (Topico, Usuario, Respuesta, Curso) en lugar de la separación clásica por capas globales.  
 Esto mejora la cohesión, facilita el mantenimiento y prepara el proyecto para escalar.
 
-### ⚠ Manejo Global de Errores
+### Manejo Global de Errores
 Se implementó un manejador centralizado con `@RestControllerAdvice` para:
 - Capturar errores de validación.
 - Manejar excepciones de base de datos.
 - Retornar respuestas HTTP consistentes (400, 403, 404).
 
-### 🧪 Estrategia de Testing
+### Estrategia de Testing
 - Tests automatizados con base H2 en memoria.
 - Aislamiento del entorno de desarrollo.
 - Validación de seguridad y reglas de negocio.
@@ -110,7 +110,7 @@ Se implementó un manejador centralizado con `@RestControllerAdvice` para:
 
 ## ⚙ Cómo correr el proyecto
 
-### ✅ 1. Requisitos previos
+###  1. Requisitos previos
 
 - Java 21 o superior
 - Maven 3.9+
@@ -135,7 +135,7 @@ CREATE DATABASE foro_hub;
 
 ---
 
-### 🔐 3. Configurar variables de entorno
+### 3. Configurar variables de entorno
 
 En `application.properties`:
 
@@ -149,7 +149,7 @@ jwt.secret=tu_clave_secreta
 
 ---
 
-### 📥 4. Clonar el repositorio
+### 4. Clonar el repositorio
 
 ```bash
 git clone https://github.com/micabenitez/challenge-forohub.git
@@ -158,7 +158,7 @@ cd challenge-forohub
 
 ---
 
-### ▶ 5. Ejecutar la aplicación
+### 5. Ejecutar la aplicación
 
 Con Maven Wrapper:
 
@@ -174,7 +174,7 @@ mvn spring-boot:run
 
 ---
 
-### 🌐 6. Acceder a la API
+### 6. Acceder a la API
 
 La aplicación estará disponible en:
 

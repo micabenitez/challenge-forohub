@@ -45,8 +45,8 @@ public class DataInitializer implements CommandLineRunner {
             return;
         }
 
-        Perfil perfilAdmin = perfilRepository.findByNombre("ADMIN")
-                .orElseThrow(() -> new RuntimeException("Perfil ADMIN no encontrado"));
+        Perfil perfilAdmin = perfilRepository.findByNombre("ROLE_ADMIN")
+                .orElseThrow(() -> new RuntimeException("Perfil ROLE_ADMIN no encontrado"));
 
         Usuario admin = new Usuario();
 
