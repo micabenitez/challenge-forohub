@@ -4,17 +4,16 @@
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-005C84?style=for-the-badge&logo=mysql&logoColor=white)
 ![Security](https://img.shields.io/badge/Spring%20Security-JWT-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white)
-
+![Build Status](https://github.com/micabenitez/challenge-forohub/actions/workflows/ci.yml/badge.svg)
 ---
 
 ## Descripción
+Una API RESTful desarrollada en Java con Spring Boot para la gestión de un foro de discusiones. El proyecto incluye autenticación, gestión de usuarios, tópicos y respuestas, utilizando las mejores prácticas de desarrollo backend.
 
-**Foro Hub** es una API RESTful que gestiona la comunicación en un entorno académico.  
-Permite a los usuarios crear tópicos, publicar respuestas y moderar discusiones según su rol.
+🚀 **[Ver Documentación Interactiva (Swagger UI)](https://forohub-gb3g.onrender.com/swagger-ui/index.html)**
 
-El sistema centraliza el conocimiento de forma estructurada, segura y escalable, aplicando autenticación stateless y autorización basada en roles.
+> **⚠️ Nota sobre el despliegue:** Esta API está alojada en la capa gratuita de Render. Si el servidor no recibe peticiones por 15 minutos, se suspende para ahorrar recursos. **La primera petición puede tardar unos 50 segundos en responder** mientras el servidor "despierta". Las siguientes peticiones serán instantáneas.
 
----
 
 ## Competencias Técnicas Aplicadas
 
@@ -105,79 +104,46 @@ Se implementó un manejador centralizado con `@RestControllerAdvice` para:
 - Tests automatizados con base H2 en memoria.
 - Aislamiento del entorno de desarrollo.
 - Validación de seguridad y reglas de negocio.
-
 ---
 
-## ⚙ Cómo correr el proyecto
+## Ejecución Local (Docker)
 
-###  1. Requisitos previos
+La API está completamente dockerizada utilizando **multi-stage build**, permitiendo levantar el entorno completo (API + base de datos) con un único comando.
 
-- Java 21 o superior
-- Maven 3.9+
-- MySQL 8 en ejecución
+1. Cloná el repositorio:
+   ```bash
+   git clone https://github.com/micabenitez/challenge-forohub.git
+   cd foro_hub
+   ```
+2. Construir y levantar los contenedores:
+   
+   ```bash
+   docker compose up --build
+   ```
+4. Acceder a la API en:
+   ```bash
+   http:localhost:8080
+   ```
+   
+# CI/CD – Integración Continua
 
-Verificar versiones:
+El proyecto implementa Integración Continua mediante **GitHub Actions**.
 
-```bash
-java -version
-mvn -version
-```
+El pipeline se ejecuta automáticamente en cada Push a la rama main
+## Etapas automatizadas
 
----
+- Checkout del código
+- Configuración de Java 21
+- Build con Maven
+- Ejecución de tests de integración (H2 en memoria)
+- Generación del artefacto JAR
 
-### 🗄 2. Crear base de datos
+## Objetivo
 
-Ingresar a MySQL y ejecutar:
+Garantizar que:
 
-```sql
-CREATE DATABASE foro_hub;
-```
-
----
-
-### 3. Configurar variables de entorno
-
-En `application.properties`:
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/foro_hub
-spring.datasource.username=tu_usuario
-spring.datasource.password=tu_contraseña
-
-jwt.secret=tu_clave_secreta
-```
-
----
-
-### 4. Clonar el repositorio
-
-```bash
-git clone https://github.com/micabenitez/challenge-forohub.git
-cd challenge-forohub
-```
-
----
-
-### 5. Ejecutar la aplicación
-
-Con Maven Wrapper:
-
-```bash
-./mvnw spring-boot:run
-```
-
-O con Maven instalado:
-
-```bash
-mvn spring-boot:run
-```
-
----
-
-### 6. Acceder a la API
-
-La aplicación estará disponible en:
-
-```
-http://localhost:8080
-```
+- El proyecto compile correctamente
+- Las reglas de negocio estén validadas por tests
+- La rama principal se mantenga estable
+- Los errores se detecten antes del despliegue  
+   
