@@ -2,7 +2,7 @@
 
 ![Java](https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Security](https://img.shields.io/badge/Spring%20Security-JWT-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white)
 ![Build Status](https://github.com/micabenitez/challenge-forohub/actions/workflows/ci.yml/badge.svg)
 ---
@@ -49,7 +49,7 @@ Este proyecto fue construido con un enfoque profesional para demostrar:
 | ORM              | Hibernate | Mapeo objeto-relacional |
 | Seguridad        | Spring Security | Protección de rutas |
 | Autenticación    | JWT (Auth0) | Autenticación stateless |
-| Base de Datos    | MySQL 8 | Entorno principal |
+| Base de Datos    | PostgreSQL 15 | Entorno principal |
 | Testing          | JUnit 5 + MockMvc | Pruebas de integración |
 | Testing DB       | H2 Database | Base en memoria para tests |
 | Build Tool       | Maven | Gestión de dependencias |
