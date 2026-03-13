@@ -1,5 +1,3 @@
-alter table topicos add activo boolean;
-update topicos set activo = true;
+ALTER TABLE topicos ADD activo BOOLEAN DEFAULT true;
 
-alter table usuarios add activo BOOLEAN;
-update usuarios set activo = true;
+ALTER TABLE usuarios ADD activo BOOLEAN DEFAULT true;
